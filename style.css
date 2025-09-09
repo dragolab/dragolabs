@@ -1,14 +1,11 @@
-/* -- Variabili Colore e Font -- */
 :root {
-    --primary-dark: #2c3e50; /* Blu/Grigio Scuro */
-    --secondary-blue: #3498db; /* Blu Medio */
-    --accent-light: #ecf0f1; /* Grigio Chiaro */
+    --primary-dark: #1e2a38;
+    --secondary-blue: #3498db;
+    --accent-light: #ecf0f1;
     --text-color: #ecf0f1;
-    --link-color: #3498db;
     --font-family-poppins: 'Poppins', sans-serif;
 }
 
-/* -- Reset e Base -- */
 * {
     margin: 0;
     padding: 0;
@@ -20,43 +17,62 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--primary-dark);
-    overflow-x: hidden; /* Previene scroll orizzontale */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    position: relative; /* Per lo sfondo */
 }
 
-/* -- Sfondo (Assicurati che l'immagine sia nella cartella img/background.png) -- */
-body::before {
-    content: '';
+.background-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('img/background.png') no-repeat center center / cover; /* Carica lo sfondo */
-    filter: blur(8px); /* Livello di sfocatura, regola a piacere */
-    opacity: 0.6; /* Opacità, regola per rendere il testo più leggibile */
-    z-index: -1; /* Manda lo sfondo dietro al contenuto */
+    background: url('img/background.png') no-repeat center center / cover;
+    filter: blur(8px);
+    opacity: 0.5;
+    z-index: -2;
 }
 
-/* -- Overlay scuro per migliorare la leggibilità -- */
-body::after {
-    content: '';
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Overlay semitrasparente */
+    background: rgba(30, 42, 56, 0.7);
     z-index: -1;
 }
 
-/* -- Header -- */
+/* Ho spostato lo sfondo in due div separati per una migliore gestione */
+/* Aggiungi questi due div subito dopo il tag <body> in index.html */
+/* <div class="background-container"></div> */
+/* <div class="overlay"></div> */
+/* NOTA: Per semplicità nel codice sopra, ho lasciato lo sfondo sul body::before, ma questo metodo è più robusto. */
+/* Lo stile qui sotto usa ancora il metodo con ::before per non farti modificare l'HTML */
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('img/background.png') no-repeat center center / cover;
+    filter: blur(8px);
+    opacity: 0.5;
+    z-index: -2;
+}
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(30, 42, 56, 0.7);
+    z-index: -1;
+}
+
+
 .header {
     padding: 1.5rem 5%;
-    position: absolute; /* Per farlo stare sopra lo sfondo, ma non "scrollare" col contenuto */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -66,33 +82,35 @@ body::after {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 15px; /* Spazio tra logo e titolo */
+    gap: 20px; /* Aumentato lo spazio */
 }
 
 .logo {
-    height: 40px; /* Regola la dimensione del logo */
-    width: auto;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%; /* Rende il logo tondo */
+    object-fit: cover; /* Assicura che l'immagine riempia il cerchio */
+    border: 2px solid var(--secondary-blue); /* Aggiunge un bordo blu */
 }
 
 .header-title {
     color: var(--text-color);
-    font-size: 1.8rem; /* Dimensione del titolo affianco al logo */
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
-/* -- Hero Section -- */
 .hero {
-    flex-grow: 1; /* Fa sì che occupi lo spazio rimanente */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 8rem 5% 4rem; /* Padding superiore per lasciare spazio all'header */
+    padding: 8rem 5% 4rem;
 }
 
 .hero-content {
     max-width: 700px;
-    background: rgba(0, 0, 0, 0.5); /* Sfondo semitrasparente per il testo */
+    background: rgba(0, 0, 0, 0.5);
     padding: 2.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -101,14 +119,12 @@ body::after {
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: var(--text-color);
     line-height: 1.1;
 }
 
 .hero .description {
     font-size: 1.3rem;
     margin-bottom: 2rem;
-    color: var(--accent-light);
     opacity: 0.9;
 }
 
@@ -127,36 +143,34 @@ body::after {
     background-color: #2980b9;
 }
 
-/* -- Portfolio Section -- */
 .portfolio {
     text-align: center;
     padding: 4rem 5%;
-    background: rgba(0, 0, 0, 0.6); /* Sfondo leggermente più scuro per questa sezione */
-    margin-top: 2rem; /* Spazio dall'hero */
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .portfolio h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: var(--text-color);
+}
+
+.portfolio-slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .portfolio-slider {
     display: flex;
-    overflow: hidden; /* Nasconde gli item fuori vista */
-    position: relative;
-    margin: 0 auto;
-    max-width: 900px; /* Limita la larghezza dello slider */
+    overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .slider-item {
-    min-width: 100%; /* Ogni item occupa il 100% della larghezza */
+    min-width: 100%;
     transition: transform 0.5s ease-in-out;
-    text-align: center;
     background: rgba(var(--primary-dark), 0.8);
-    padding: 2rem;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,53 +178,75 @@ body::after {
 }
 
 .slider-item img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 600px;
     height: auto;
-    max-height: 300px;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    object-fit: contain; /* Assicura che l'immagine sia contenuta senza tagliarla */
-    background-color: #fff; /* Sfondo bianco per le immagini */
-    padding: 10px;
-}
-
-.slider-item h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-    color: var(--secondary-blue);
+    border: 1px solid #444;
 }
 
 .slider-item p {
     font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     max-width: 500px;
-    color: var(--accent-light);
 }
 
-.portfolio-link {
-    color: var(--link-color);
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--secondary-blue);
+    padding: 0.8rem 2rem;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 2px solid var(--secondary-blue);
+    transition: all 0.3s ease;
 }
 
-.portfolio-link:hover {
-    color: #2980b9;
+.btn-secondary:hover {
+    background-color: var(--secondary-blue);
+    color: white;
 }
 
-/* -- Footer -- */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.slider-nav:hover {
+    background: var(--secondary-blue);
+}
+
+.prev-btn {
+    left: -25px;
+}
+
+.next-btn {
+    right: -25px;
+}
+
 .footer {
     text-align: center;
     padding: 3rem 5%;
-    background: rgba(0, 0, 0, 0.7); /* Sfondo più scuro per il footer */
+    background: rgba(0, 0, 0, 0.7);
     margin-top: 2rem;
 }
 
 .footer h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--text-color);
 }
 
 .social-icons {
@@ -230,71 +266,14 @@ body::after {
 
 .footer p {
     font-size: 0.9rem;
-    color: var(--accent-light);
     opacity: 0.8;
 }
 
-/* -- Media Queries per Responsiveness -- */
 @media (max-width: 768px) {
-    .header-title {
-        font-size: 1.5rem;
-    }
-    .hero h1 {
-        font-size: 2.8rem;
-    }
-
-    .hero .description {
-        font-size: 1.1rem;
-    }
-
-    .btn-primary {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-
-    .portfolio h2 {
-        font-size: 2rem;
-    }
-
-    .slider-item h3 {
-        font-size: 1.5rem;
-    }
-
-    .slider-item p {
-        font-size: 1rem;
-    }
-
-    .social-icons a {
-        font-size: 1.8rem;
-        margin: 0 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-title {
-        font-size: 1.2rem;
-    }
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero .description {
-        font-size: 1rem;
-    }
-
-    .hero-content {
-        padding: 1.5rem;
-    }
-
-    .logo {
-        height: 30px;
-    }
-
-    .portfolio {
-        padding: 3rem 3%;
-    }
-
-    .portfolio h2 {
-        font-size: 1.8rem;
-    }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+    .header-title { font-size: 1.5rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero .description { font-size: 1.1rem; }
+    .logo { height: 40px; width: 40px; }
 }
