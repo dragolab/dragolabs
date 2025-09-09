@@ -137,20 +137,21 @@ body::after {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: hidden; /* Maschera le slide che escono */
     border-radius: 10px;
 }
 
+/* --- FIX DEFINITIVO TRANSIZIONE SLIDER --- */
 .portfolio-slider {
     display: flex;
+    /* La transizione va applicata qui, all'intero 'nastro' che scorre */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- TRANSIZIONE SLIDER MIGLIORATA --- */
 .slider-item {
     min-width: 100%;
     flex-shrink: 0;
-    /* Transizione più lunga e con una curva 'ease-out' per una percezione di "spinta" */
-    transition: transform 1s ease-out; 
+    /* La transizione è stata rimossa da qui */
     background: #1e2a38;
     padding: 2.5rem;
     display: flex;
@@ -234,13 +235,11 @@ body::after {
     margin-bottom: 2rem;
 }
 
-/* --- RIPRISTINO ICONE SOCIAL --- */
 .social-icons {
     margin-bottom: 2rem;
 }
 
 .social-icons a {
-    /* Ho ripristinato i colori originali che erano stati sovrascritti */
     color: var(--text-color); 
     font-size: 2.2rem;
     margin: 0 1rem;
