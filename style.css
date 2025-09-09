@@ -21,20 +21,21 @@ body {
     position: relative;
 }
 
+/* --- SFONDO CON VISIBILITÀ AUMENTATA --- */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background: url('img/background.png') no-repeat center center / cover;
     filter: blur(8px);
-    opacity: 0.4;
+    opacity: 0.6; /* Aumentato da 0.4 per rendere l'immagine più visibile */
     z-index: -2;
 }
 body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(30, 42, 56, 0.7);
+    background: rgba(30, 42, 56, 0.6); /* Diminuito da 0.7 per rendere l'overlay più trasparente */
     z-index: -1;
 }
 
@@ -137,20 +138,20 @@ body::after {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
-    overflow: hidden; /* Aggiunto qui per contenere le slide */
+    overflow: hidden;
     border-radius: 10px;
 }
 
 .portfolio-slider {
     display: flex;
-    /* La larghezza viene gestita da JS, non serve qui */
 }
 
+/* --- TRANSIZIONE SLIDER PIÙ FLUIDA --- */
 .slider-item {
     min-width: 100%;
-    flex-shrink: 0; /* Impedisce agli item di restringersi */
-    /* --- TRANSIZIONE PIÙ FLUIDA --- */
-    transition: transform 0.7s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    flex-shrink: 0;
+    /* Durata leggermente aumentata e timing 'ease' per un effetto più morbido */
+    transition: transform 0.8s ease; 
     background: #1e2a38;
     padding: 2.5rem;
     display: flex;
@@ -193,7 +194,7 @@ body::after {
 
 .slider-nav {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     background: rgba(0,0,0,0.5);
     border: none;
@@ -229,41 +230,5 @@ body::after {
     background: rgba(0, 0, 0, 0.7);
 }
 
-/* ... il resto del footer e le media queries rimangono invariate ... */
-
 .footer h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-.social-icons {
-    margin-bottom: 2rem;
-}
-
-.social-icons a {
-    color: var(--text-color);
-    font-size: 2.2rem;
-    margin: 0 1rem;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: var(--secondary-blue);
-}
-
-.footer p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-@media (max-width: 950px) {
-    .prev-btn { left: 10px; }
-    .next-btn { right: 10px; }
-}
-
-@media (max-width: 768px) {
-    .header-title { font-size: 1.5rem; }
-    .hero h1 { font-size: 2.8rem; }
-    .hero .description { font-size: 1.1rem; }
-    .logo { height: 40px; width: 40px; }
-}
+    font-size: 2rem
