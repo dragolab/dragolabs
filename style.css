@@ -21,8 +21,6 @@ body {
     position: relative;
 }
 
-/* --- FIX SFONDO --- */
-/* Questo metodo è il più affidabile. Assicurati che nella cartella 'img' ci sia un file chiamato ESATTAMENTE 'background.png' */
 body::before {
     content: '';
     position: fixed;
@@ -139,17 +137,20 @@ body::after {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
+    overflow: hidden; /* Aggiunto qui per contenere le slide */
+    border-radius: 10px;
 }
 
 .portfolio-slider {
     display: flex;
-    overflow: hidden;
-    border-radius: 10px;
+    /* La larghezza viene gestita da JS, non serve qui */
 }
 
 .slider-item {
     min-width: 100%;
-    transition: transform 0.5s ease-in-out;
+    flex-shrink: 0; /* Impedisce agli item di restringersi */
+    /* --- TRANSIZIONE PIÙ FLUIDA --- */
+    transition: transform 0.7s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     background: #1e2a38;
     padding: 2.5rem;
     display: flex;
@@ -192,7 +193,7 @@ body::after {
 
 .slider-nav {
     position: absolute;
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
     background: rgba(0,0,0,0.5);
     border: none;
@@ -215,11 +216,11 @@ body::after {
 }
 
 .prev-btn {
-    left: -25px;
+    left: 15px;
 }
 
 .next-btn {
-    right: -25px;
+    right: 15px;
 }
 
 .footer {
@@ -227,6 +228,8 @@ body::after {
     padding: 3rem 5%;
     background: rgba(0, 0, 0, 0.7);
 }
+
+/* ... il resto del footer e le media queries rimangono invariate ... */
 
 .footer h2 {
     font-size: 2rem;
@@ -256,3 +259,11 @@ body::after {
 @media (max-width: 950px) {
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
+}
+
+@media (max-width: 768px) {
+    .header-title { font-size: 1.5rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero .description { font-size: 1.1rem; }
+    .logo { height: 40px; width: 40px; }
+}

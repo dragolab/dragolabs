@@ -4,13 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     
+    // Se non c'è uno slider, interrompi lo script per evitare errori
+    if (!slider || sliderItems.length === 0) return;
+
     let currentIndex = 0;
-    const slideIntervalTime = 4000; // Scorrimento ogni 4 secondi
+    const slideIntervalTime = 4000; // 4 secondi
     let slideInterval;
 
     function updateSlider() {
-        if (sliderItems.length === 0) return;
-        const itemWidth = slider.clientWidth; // Usa la larghezza del contenitore
+        // La larghezza di ogni slide è il 100% del contenitore visibile
+        const itemWidth = slider.parentElement.clientWidth;
+        // Sposta l'intero blocco slider a sinistra
         slider.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
     }
 
@@ -26,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funzione per resettare e avviare l'intervallo automatico
     function startSlideInterval() {
-        clearInterval(slideInterval); // Ferma l'intervallo precedente
+        clearInterval(slideInterval); // Ferma l'intervallo precedente per sicurezza
         slideInterval = setInterval(goToNextSlide, slideIntervalTime);
     }
 
@@ -41,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlideInterval(); // Resetta il timer quando si clicca
     });
 
-    // Aggiorna lo slider al ridimensionamento della finestra
+    // Aggiorna lo slider al ridimensionamento della finestra per la responsività
     window.addEventListener('resize', updateSlider);
 
     // Inizializza tutto
