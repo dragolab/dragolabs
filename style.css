@@ -16,14 +16,13 @@ body {
     font-family: var(--font-family-poppins);
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--primary-dark); /* Colore di fallback se l'immagine non carica */
+    background-color: var(--primary-dark);
     overflow-x: hidden;
-    position: relative; /* Necessario per il corretto funzionamento dei pseudo-elementi */
+    position: relative;
 }
 
 /* --- FIX SFONDO --- */
-/* Applichiamo lo sfondo e un overlay scuro direttamente al body con pseudo-elementi.
-   Questo metodo è molto robusto. Assicurati che il percorso 'img/background.png' sia corretto! */
+/* Questo metodo è il più affidabile. Assicurati che nella cartella 'img' ci sia un file chiamato ESATTAMENTE 'background.png' */
 body::before {
     content: '';
     position: fixed;
@@ -53,15 +52,14 @@ body::after {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 20px; /* Aumentato lo spazio */
+    gap: 20px;
 }
 
-/* --- FIX LOGO TONDO E SPAZIATO --- */
 .logo {
     height: 50px;
     width: 50px;
-    border-radius: 50%; /* Rende l'elemento circolare */
-    object-fit: cover;   /* Assicura che l'immagine riempia il cerchio senza deformarsi */
+    border-radius: 50%;
+    object-fit: cover;
     border: 2px solid var(--secondary-blue);
 }
 
@@ -100,17 +98,17 @@ body::after {
     opacity: 0.9;
 }
 
-/* --- FIX BOTTONE CON FRECCIA --- */
 .btn-primary {
-    display: inline-flex; /* Usa flex per allineare testo e icona */
+    display: inline-flex;
     align-items: center;
-    gap: 10px; /* Spazio tra testo e freccia */
+    gap: 10px;
     background-color: var(--secondary-blue);
     color: white;
     padding: 1rem 2.5rem;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.1rem;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
@@ -123,7 +121,7 @@ body::after {
 }
 
 .btn-primary:hover i {
-    transform: translateX(5px); /* Sposta la freccia a destra on hover */
+    transform: translateX(5px);
 }
 
 .portfolio {
@@ -152,19 +150,18 @@ body::after {
 .slider-item {
     min-width: 100%;
     transition: transform 0.5s ease-in-out;
-    background: rgba(var(--primary-dark), 0.8);
+    background: #1e2a38;
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* --- FIX IMMAGINI PORTFOLIO CON BORDI STONDATI --- */
 .slider-item img {
     width: 100%;
     max-width: 600px;
     height: auto;
-    border-radius: 8px; /* Bordi stondati */
+    border-radius: 8px;
     margin-bottom: 1.5rem;
 }
 
@@ -172,7 +169,7 @@ body::after {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     max-width: 500px;
-    flex-grow: 1; /* Fa sì che il testo occupi lo spazio necessario per allineare i bottoni */
+    flex-grow: 1;
 }
 
 .btn-secondary {
@@ -185,6 +182,7 @@ body::after {
     font-size: 1rem;
     border: 2px solid var(--secondary-blue);
     transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .btn-secondary:hover {
@@ -192,10 +190,9 @@ body::after {
     color: white;
 }
 
-/* --- FIX FRECCE PORTFOLIO --- */
 .slider-nav {
     position: absolute;
-    top: 40%; /* Regolato per centrare meglio con l'immagine */
+    top: 40%;
     transform: translateY(-50%);
     background: rgba(0,0,0,0.5);
     border: none;
@@ -214,7 +211,7 @@ body::after {
 
 .slider-nav:hover {
     background: var(--secondary-blue);
-    transform: translateY(-50%) scale(1.1); /* Leggero zoom on hover */
+    transform: translateY(-50%) scale(1.1);
 }
 
 .prev-btn {
@@ -259,11 +256,3 @@ body::after {
 @media (max-width: 950px) {
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
-}
-
-@media (max-width: 768px) {
-    .header-title { font-size: 1.5rem; }
-    .hero h1 { font-size: 2.8rem; }
-    .hero .description { font-size: 1.1rem; }
-    .logo { height: 40px; width: 40px; }
-}
