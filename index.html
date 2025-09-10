@@ -4,7 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drago Labs | Sviluppo Web & Supporto IT</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-dark: #1e2a38;
+            --secondary-blue: #3498db;
+            --accent-light: #ecf0f1;
+            --text-color: #ecf0f1;
+            --font-family-poppins: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-poppins);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('img/background.png') no-repeat center center / cover;
+            filter: blur(8px);
+            opacity: 0.7;
+            z-index: -2;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(30, 42, 56, 0.5);
+            z-index: -1;
+        }
+
+        .header {
+            padding: 1.5rem 5%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-blue);
+        }
+
+        .header-title {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero .description {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--secondary-blue);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+        .portfolio {
+            text-align: center;
+            padding: 4rem 5%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .portfolio h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .portfolio-slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        .slider-item {
+            min-width: 100%;
+            flex-shrink: 0;
+            background: #1e2a38;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slider-item img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .slider-item p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            flex-grow: 1;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary-blue);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            border: 2px solid var(--secondary-blue);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-blue);
+            color: white;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 40%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slider-nav:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 5%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .footer h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--text-color); 
+            font-size: 2.2rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 950px) {
+            .prev-btn { left: 10px; }
+            .next-btn { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .header-title { font-size: 1.5rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero .description { font-size: 1.1rem; }
+            .logo { height: 40px; width: 40px; }
+            
+            /* Miglioramenti per mobile */
+            .slider-item {
+                padding: 1.5rem;
+            }
+            
+            .slider-item p {
+                font-size: 1rem;
+                padding: 0 5px;
+            }
+            
+            .portfolio h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Miglioramenti per schermi piccoli */
+        @media (max-width: 480px) {
+            .portfolio-slider-container {
+                border-radius: 0;
+                margin: 0 -5%;
+                width: calc(100% + 10%);
+            }
+            
+            .slider-item {
+                padding: 1.5rem 1rem;
+            }
+            
+            .slider-item p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .btn-secondary {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .description {
+                font-size: 1rem;
+            }
+            
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -63,6 +385,97 @@
         <p>&copy; 2025 Drago Labs. Tutti i diritti riservati.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('.portfolio-slider');
+            const sliderItems = document.querySelectorAll('.slider-item');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            // Se non c'è uno slider, interrompi lo script per evitare errori
+            if (!slider || sliderItems.length === 0) return;
+
+            let currentIndex = 0;
+            const slideIntervalTime = 4000; // 4 secondi
+            let slideInterval;
+
+            function updateSlider() {
+                // La larghezza di ogni slide è il 100% del contenitore visibile
+                const itemWidth = slider.parentElement.clientWidth;
+                // Sposta l'intero blocco slider a sinistra
+                slider.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+            }
+
+            function goToNextSlide() {
+                currentIndex = (currentIndex < sliderItems.length - 1) ? currentIndex + 1 : 0;
+                updateSlider();
+            }
+            
+            function goToPrevSlide() {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : sliderItems.length - 1;
+                updateSlider();
+            }
+
+            // Funzione per resettare e avviare l'intervallo automatico
+            function startSlideInterval() {
+                clearInterval(slideInterval); // Ferma l'intervallo precedente per sicurezza
+                slideInterval = setInterval(goToNextSlide, slideIntervalTime);
+            }
+
+            // Event listeners per i bottoni
+            nextBtn.addEventListener('click', () => {
+                goToNextSlide();
+                startSlideInterval(); // Resetta il timer quando si clicca
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                goToPrevSlide();
+                startSlideInterval(); // Resetta il timer quando si clicca
+            });
+
+            // Supporto per swipe su dispositivi touch
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function handleTouchStart(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }
+
+            function handleTouchEnd(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // minima distanza per considerare uno swipe
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe sinistro - prossima slide
+                    goToNextSlide();
+                    startSlideInterval();
+                }
+                
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe destro - slide precedente
+                    goToPrevSlide();
+                    startSlideInterval();
+                }
+            }
+
+            // Aggiungi supporto per touch
+            const sliderContainer = document.querySelector('.portfolio-slider-container');
+            if (sliderContainer) {
+                sliderContainer.addEventListener('touchstart', handleTouchStart, false);
+                sliderContainer.addEventListener('touchend', handleTouchEnd, false);
+            }
+
+            // Aggiorna lo slider al ridimensionamento della finestra per la responsività
+            window.addEventListener('resize', updateSlider);
+
+            // Inizializza tutto
+            updateSlider();
+            startSlideInterval();
+        });
+    </script>
 </body>
 </html>
