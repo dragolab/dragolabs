@@ -264,19 +264,10 @@ body::after {
     .logo { height: 40px; width: 40px; }
 }
 
-/* --- FIX VISUALIZZAZIONE MOBILE SLIDER --- */
+/* --- FIX: SCALING MOBILE SLIDER --- */
 @media (max-width: 480px) {
-    .portfolio-slider-container {
-        border-radius: 0;
-    }
     .slider-item {
-        padding: 1rem;
-    }
-    .slider-item img {
-        max-width: 100%;
-    }
-    .slider-item p {
-        max-width: 100%;
-        font-size: 1rem;
+        transform: scale(0.9);
+        transform-origin: top center;
     }
 }
