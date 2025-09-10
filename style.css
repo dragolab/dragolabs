@@ -157,8 +157,7 @@ body::after {
 }
 
 .slider-item img {
-    width: 100%;
-    max-width: 600px;
+    width: 100%;       /* sempre tutta la larghezza del blocco */
     height: auto;
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -167,7 +166,7 @@ body::after {
 .slider-item p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    max-width: 500px;
+    width: 100%;       /* prende tutta la larghezza disponibile */
     flex-grow: 1;
 }
 
@@ -264,10 +263,8 @@ body::after {
     .logo { height: 40px; width: 40px; }
 }
 
-/* --- FIX: SCALING MOBILE SLIDER --- */
 @media (max-width: 480px) {
     .slider-item {
-        transform: scale(0.9);
-        transform-origin: top center;
+        padding: 1rem;   /* meno padding su mobile */
     }
 }
