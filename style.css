@@ -73,28 +73,25 @@ body::after {
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* Riduci padding su schermi più piccoli */
-    padding: 8rem 5% 4rem; 
+    padding: 8rem 5% 4rem;
 }
 
 .hero-content {
     max-width: 700px;
     background: rgba(0, 0, 0, 0.5);
-    /* Padding leggermente ridotto per schermi piccoli */
-    padding: 2.5rem; 
+    padding: 2.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Scalatura fluida dei testi per l'hero section */
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 3.5rem); /* Min 2.5rem, max 3.5rem, scala con viewport */
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     line-height: 1.1;
 }
 
 .hero .description {
-    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Min 1rem, max 1.3rem, scala con viewport */
+    font-size: 1.3rem;
     margin-bottom: 2rem;
     opacity: 0.9;
 }
@@ -108,7 +105,7 @@ body::after {
     padding: 1rem 2.5rem;
     text-decoration: none;
     border-radius: 5px;
-    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Scalatura anche per i bottoni */
+    font-size: 1.1rem;
     font-weight: 600;
     transition: all 0.3s ease;
 }
@@ -132,7 +129,7 @@ body::after {
 }
 
 .portfolio h2 {
-    font-size: clamp(2rem, 5vw, 2.5rem); /* Scalatura per il titolo del portfolio */
+    font-size: 2.5rem;
     margin-bottom: 3rem;
 }
 
@@ -153,29 +150,25 @@ body::after {
     min-width: 100%;
     flex-shrink: 0;
     background: #1e2a38;
-    /* Padding adattivo, più piccolo su schermi stretti */
-    padding: 2.5rem; 
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .slider-item img {
-    width: 100%; /* L'immagine occupa sempre il 100% dello spazio disponibile */
+    width: 100%;
+    max-width: 600px;
     height: auto;
-    max-width: 600px; /* Ma non supera questa dimensione */
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    object-fit: contain; /* Assicura che l'intera immagine sia visibile */
 }
 
-/* Scalatura fluida dei testi nelle slide del portfolio */
 .slider-item p {
-    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Min 0.9rem, max 1.1rem */
+    font-size: 1.1rem;
     margin-bottom: 2rem;
     max-width: 500px;
     flex-grow: 1;
-    line-height: 1.4; /* Line height leggermente ridotto per testi più densi */
 }
 
 .btn-secondary {
@@ -185,7 +178,7 @@ body::after {
     padding: 0.8rem 2rem;
     text-decoration: none;
     border-radius: 5px;
-    font-size: clamp(0.8rem, 1.8vw, 1rem); /* Scalatura anche per i bottoni */
+    font-size: 1rem;
     border: 2px solid var(--secondary-blue);
     transition: all 0.3s ease;
     font-weight: 600;
@@ -235,7 +228,7 @@ body::after {
 }
 
 .footer h2 {
-    font-size: clamp(1.8rem, 4vw, 2rem); /* Scalatura per il titolo del footer */
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
@@ -245,7 +238,7 @@ body::after {
 
 .social-icons a {
     color: var(--text-color); 
-    font-size: clamp(1.8rem, 4vw, 2.2rem); /* Scalatura per le icone social */
+    font-size: 2.2rem;
     margin: 0 1rem;
     transition: color 0.3s ease;
 }
@@ -255,7 +248,7 @@ body::after {
 }
 
 .footer p {
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Scalatura per il testo del footer */
+    font-size: 0.9rem;
     opacity: 0.8;
 }
 
@@ -266,30 +259,19 @@ body::after {
 
 @media (max-width: 768px) {
     .header-title { font-size: 1.5rem; }
-    /* Padding più stretto per hero content e slider item */
-    .hero-content { padding: 1.5rem; }
-    .slider-item { padding: 1.5rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero .description { font-size: 1.1rem; }
     .logo { height: 40px; width: 40px; }
 }
 
-/* FIX DEFINITIVO VISUALIZZAZIONE MOBILE SLIDER */
+/* --- FIX VISUALIZZAZIONE MOBILE SLIDER --- */
 @media (max-width: 480px) {
     .portfolio-slider-container {
-        border-radius: 0; /* Rimuoviamo il raggio per massimizzare lo spazio */
+        /* Rimuoviamo il raggio dei bordi se interferisce */
+        border-radius: 0;
     }
     .slider-item {
-        /* Riducendo ulteriormente il padding per dare più spazio ai contenuti */
-        padding: 1rem 0.8rem; 
-    }
-    .portfolio h2 {
-        margin-bottom: 2rem; /* Leggermente meno spazio sotto il titolo su mobile */
-    }
-    /* Regola per i bottoni di navigazione più vicini al bordo su mobile */
-    .slider-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-        left: 5px;
-        right: 5px;
+        /* Riduciamo il padding per evitare problemi di calcolo larghezza */
+        padding: 1.5rem 1rem;
     }
 }
