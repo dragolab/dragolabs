@@ -267,11 +267,16 @@ body::after {
 /* --- FIX VISUALIZZAZIONE MOBILE SLIDER --- */
 @media (max-width: 480px) {
     .portfolio-slider-container {
-        /* Rimuoviamo il raggio dei bordi se interferisce */
         border-radius: 0;
     }
     .slider-item {
-        /* Riduciamo il padding per evitare problemi di calcolo larghezza */
-        padding: 1.5rem 1rem;
+        padding: 1rem;
+    }
+    .slider-item img {
+        max-width: 100%;
+    }
+    .slider-item p {
+        max-width: 100%;
+        font-size: 1rem;
     }
 }
