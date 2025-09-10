@@ -21,21 +21,20 @@ body {
     position: relative;
 }
 
-/* --- SFONDO CON VISIBILITÀ AUMENTATA DEL 10% --- */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background: url('img/background.png') no-repeat center center / cover;
     filter: blur(8px);
-    opacity: 0.7; /* Aumentato da 0.6 */
+    opacity: 0.7;
     z-index: -2;
 }
 body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(30, 42, 56, 0.5); /* Diminuito da 0.6 */
+    background: rgba(30, 42, 56, 0.5);
     z-index: -1;
 }
 
@@ -267,7 +266,12 @@ body::after {
 
 /* --- FIX VISUALIZZAZIONE MOBILE SLIDER --- */
 @media (max-width: 480px) {
+    .portfolio-slider-container {
+        /* Rimuoviamo il raggio dei bordi se interferisce */
+        border-radius: 0;
+    }
     .slider-item {
-        padding: 1.5rem; /* Riduci il padding su schermi molto piccoli */
+        /* Riduciamo il padding per evitare problemi di calcolo larghezza */
+        padding: 1.5rem 1rem;
     }
 }
